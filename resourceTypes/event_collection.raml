@@ -1,0 +1,41 @@
+#%RAML 1.0 ResourceType
+
+usage: Apply this resource type to a collection of events.
+
+uses:
+  traits: ../traits/traits.raml 
+
+
+get:
+    is: [ traits.pageable, traits.sortable , traits.event]
+    description: Returns a collection of <<resourcePathName>>
+    responses:
+      200:
+        body:
+          application/json:
+            type: <<get-response-type>>
+      400:
+        body:
+          application/json:
+            type: <<response-error-type>>
+      404:
+        body:
+          application/json:
+            type: <<response-error-type>>
+post:
+    description: Requests the creation of a new <<resourcePathName | !singularize>>
+    body:
+      application/json:
+        type: <<post-request-type>>
+        201:
+          body:
+            application/json:
+              type: <<post-response-type>>
+        400:
+          body:
+            application/json:
+              type: <<response-error-type>>
+        404:
+          body:
+            application/json:
+              type: <<response-error-type>>

@@ -1,0 +1,152 @@
+#%RAML 1.0
+title: YACM (Yet Another Customer Module)
+version: v1
+baseUri: https://yacm.api.namphibian.org/{version}
+mediaType:  application/json
+protocols:
+  - HTTPS
+description: Welcome to the Yet Another Customer Module API.
+             This API allows you to interface with our customer system.
+             To use this system please register at www.api.namphibian.org/register.
+             Please make sure to familiarise yourself with the terms of usage
+             and legal information you can get during the registration process.
+             Now the fun stuff. This service has the following resources
+             which you can access via the API.
+             - Customers.
+             - Addresses.
+             - Product.
+             - Order.
+            Please note that the Product and Order resources are currently under
+            development and included so that you can prepare for the big launch.
+            Feel free to log any issues or bugs at our GitHub repository.
+
+securitySchemes:
+  oauth2_0: !include securitySchemes/oauth2_0.raml
+
+securedBy:
+  - oauth2_0
+types:
+  customer: !include schemas/customer.schema
+  not-implemented: !include schemas/not-implemented-operation.schema
+  customer-event: !include schemas/customer-event.schema
+  address-event: !include schemas/address-event.schema
+
+uses:
+  datatypes: ./dataTypes/yamc_common_types.raml
+
+resourceTypes:
+  readCollection: !include resourceTypes/read_only_collection.raml
+  readMember: !include resourceTypes/read_only_member.raml
+  futureUse: !include resourceTypes/not_implemented_resource.raml
+  eventCollection: !include resourceTypes/event_collection.raml
+
+
+/customers:
+ description: Returns a list of customer that you can filter, sort and select the fields in the object from.
+ type:
+     readCollection:
+       response-type : datatypes.customers
+       response-error-type : datatypes.customErrorMessage
+
+
+/customers/{customerid}:
+ description: Returns a single customer object based on the customer id provided.
+ type:
+   readMember:
+          get-response-type : datatypes.customer
+          get-error-response-type: datatypes.customErrorMessage
+          get-response-example :
+            customerId: "12345"
+            firstName: "Joe"
+            lastName: "Peter-Smith"
+            postalAddress:
+              addressId: "1234"
+              addressCountry: "Kneadville"
+              addressLocality: "New Out From Nowhere"
+              addressRegion: "District 9"
+              postalCode: "WS20"
+              streetAddress: "112 Backwards Street"
+
+
+
+
+/customers-enrollment:
+ description: This resources allows you to add new customers and also query all the customer enrollment events.
+ type:
+    eventCollection:
+        get-response-type : datatypes.customerEvents
+        post-request-type : datatypes.customer
+        post-response-type : datatypes.customerEvent
+        response-error-type : datatypes.customErrorMessage
+
+
+/customers-exit:
+  description: This resource deleted/removes a customer from the system
+  type:
+     eventCollection:
+         get-response-type : datatypes.customerEvents
+         post-request-type : datatypes.customer
+         post-response-type : datatypes.customerEvent
+         response-error-type : datatypes.customErrorMessage
+
+
+/customers-address-change:
+  type:
+     eventCollection:
+         get-response-type : datatypes.customerEvents
+         post-request-type : datatypes.customer
+         post-response-type : datatypes.customerEvent
+         response-error-type : datatypes.customErrorMessage
+
+/customer-details-change:
+  type:
+     eventCollection:
+         get-response-type : datatypes.customerEvents
+         post-request-type : datatypes.customer
+         post-response-type : datatypes.customerEvent
+         response-error-type : datatypes.customErrorMessage
+/orders:
+ type:
+     futureUse:
+       unimplemented-error : datatypes.customErrorMessage
+
+/orders/{orderid}:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/orders/{orderid}/products-add:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/orders/{orderid}/products-delete:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/orders/{orderid}/products/{orderlineid}:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/products:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/products/{productid}:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/products-enrollment:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/products-exit:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/customers/{customerid}/orders:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage
+/customer/{customerid}/orders-placement:
+  type:
+      futureUse:
+        unimplemented-error : datatypes.customErrorMessage

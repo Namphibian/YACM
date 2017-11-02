@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions" :{
+      "customer-event":{
+        "id": "http://yacm.namphibian.org/schemas/v1/customer-event.json",
+        "description": "This object contains all data relating to customer business event such as enrollment and exiting the bussiness.",
+        "type": "object",
+        "properties":{
+            "customerId": {"type":"string"},
+            "customerEventKey": {"$ref":"event-key.schema"}
+
+        }
+    }
+  }
+}

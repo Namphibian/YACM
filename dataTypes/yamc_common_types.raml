@@ -1,0 +1,113 @@
+#%RAML 1.0 Library
+
+usage: Common types i.e. data structures/objects used in the YAMC API.
+
+types:
+
+  #base type for address.
+  address:
+    properties:
+
+      addressCountry:
+        required: true
+        type: string
+        minLength: 2
+        maxLength: 128
+      addressLocality:
+        required: false
+        type: string
+        minLength: 2
+        maxLength: 128
+      addressRegion:
+        required: false
+        type: string
+        minLength: 2
+        maxLength: 128
+      postalCode:
+        required: true
+        type: string
+      streetAddress:
+        required: false
+        type: string
+        minLength: 2
+        maxLength: 128
+
+  #inherits from address to add unqiue identifier on
+  customerAddress:
+    type: address
+    properties:
+      addressId:
+        required: true
+        type: string
+
+  customerAddresses:
+    type: customerAddress[]
+    minItems: 0
+    uniqueItems: true
+  #base type for a person
+  person:
+    properties:
+      firstName:
+        required: true
+        type: string
+      lastName:
+        required: true
+        type: string
+
+  #customer inherits person attributes
+  customer:
+    type: person
+    properties:
+      customerId:
+        required: true
+        type: string
+      postalAddress:
+        required: true
+        type: customerAddress
+
+  customers:
+     type: customer[]
+     minItems: 0
+     uniqueItems: true
+
+  eventKey:
+   properties:
+     eventId:
+       type: string
+       required: true
+     eventDate:
+        type: datetime-only
+        required: true
+
+  customerEvent:
+    type: eventKey
+    properties:
+      customerId:
+        type: string
+        required: true
+
+  customerEvents:
+    type: customerEvent[]
+    minItems: 0
+    uniqueItems: true
+
+  addressEvent:
+    type: customerEvent
+    properties:
+      addressId:
+         type: string
+         required: true
+
+  addressEvents:
+    type: addressEvent[]
+    minItems: 0
+    uniqueItems: true
+
+  customErrorMessage:
+    properties:
+      statusCode:
+        type: string
+        required: true
+      message:
+        type: string
+        required: true

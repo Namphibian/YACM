@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions":{
+        "event-key":{
+          "id": "http://yacm.namphibian.org/schemas/v1/event-key.json",
+          "description": "This object is to identify event type objects.This is a base class to be extended",
+          "type": "object",
+          "properties": {
+            "eventId": { "type": "string"},
+            "eventDate":{"type":"string","format":"date-time"}
+          },
+          "required": ["eventId","eventDate"]
+        }
+      }
+}

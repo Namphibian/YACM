@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions" :{
+      "not-implemented":{
+        "id": "http://yacm.namphibian.org/schemas/v1/not-implmented-operation.json",
+        "description": "This object is used across all unimplmented resources as a response. Essentially this is a stub response.",
+        "type": "object",
+        "properties": {
+            "message": {
+              "type": "string",
+              "description": "A message that clearly specifies that this resource is in development and not available."
+            }
+        },
+        "required": ["message"]
+    }
+ }
+}

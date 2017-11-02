@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "definitions" :{
+      "address-event":{
+        "id": "http://yacm.namphibian.org/schemas/v1/customer-address-event.json",
+        "description": "This object contains all data relating to a customer address business events.",
+        "type": "object",
+        "properties":{
+            "addressId": {"type":"string"},
+            "customerId":{"type":"string"},
+            "addressEventKey": {"$ref":"event-key.schema"}
+
+        }
+    }
+  }
+}

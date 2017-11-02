@@ -1,0 +1,9 @@
+#%RAML 1.0 Trait
+usage: Apply this trait to a GET method that looks at events in a time window.
+queryParameters:
+  startdate:
+    type: datetime-only
+    description: The date indicates the start of the period which we are searching. This operation is inclusive of the date.
+  enddate:
+    type: datetime-only
+    description: The date to which we are searching. This operation is inclusive of the date.

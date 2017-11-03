@@ -105,6 +105,26 @@ resourceTypes:
          post-request-type : datatypes.customer
          post-response-type : datatypes.customerEvent
          response-error-type : datatypes.customErrorMessage
+/addresses:
+  type:
+     readCollection:
+       response-type : datatypes.customerAddresses
+       response-error-type : datatypes.customErrorMessage
+
+/addresses/{addressid}:
+  type:
+     readMember:
+       get-response-type : datatypes.customerAddress
+       get-response-example :
+         addressId: "1234"
+         addressCountry: "Kneadville"
+         addressLocality: "New Out From Nowhere"
+         addressRegion: "District 9"
+         postalCode: "WS20"
+         streetAddress: "112 Backwards Street"
+       get-error-response-type : datatypes.customErrorMessage
+
+
 /orders:
  type:
      futureUse:

@@ -1,7 +1,7 @@
 # YACM
 
 This is the Yet Another Customer Module API definition project.This is not to be used in production.
-It was a exercise formyself in RAML so leaving it here.
+It was a exercise for myself in RAML so leaving it here.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ To contribute please contact me directly for a discussion.
 ## Versioning
 
 Version numbering is the format listed below:
- 
+
  Major.Minor.Release
 
 Any bug fixes that are non-breaking updates the release version.  

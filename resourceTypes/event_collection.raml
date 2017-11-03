@@ -3,7 +3,7 @@
 usage: Apply this resource type to a collection of events.
 
 uses:
-  traits: ../traits/traits.raml 
+  traits: ../traits/traits.raml
 
 
 get:
@@ -39,3 +39,7 @@ post:
           body:
             application/json:
               type: <<response-error-type>>
+        429:
+          body:
+            application/json:
+              type:<<response-error-type>>

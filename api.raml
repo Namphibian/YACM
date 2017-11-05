@@ -79,6 +79,18 @@ resourceTypes:
         post-response-type : datatypes.customerEvent
         response-error-type : datatypes.customErrorMessage
 
+/customer-enrollment/{eventid}:
+  description: This resource allows you to view a specific enrollment event
+  type:
+    readMember:
+      get-response-type : datatypes.customerEvent
+      get-response-example :
+        customerId: "123123"
+        eventId: "3456435"
+        eventDate: "2017-05-05T17:52:24"
+      get-error-response-type: datatypes.customErrorMessage
+
+
 
 /customers-exit:
   description: This resource deleted/removes a customer from the system
@@ -105,6 +117,7 @@ resourceTypes:
          post-request-type : datatypes.customer
          post-response-type : datatypes.customerEvent
          response-error-type : datatypes.customErrorMessage
+
 /addresses:
   type:
      readCollection:
